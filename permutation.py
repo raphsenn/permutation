@@ -11,12 +11,12 @@ class Permutation:
         x -> n_x 
         
         For example:
-        Permutaion p(5, 3, 4, 1, 2) 
-        1 -> 5,
-        2 -> 3,
-        3 -> 4,
-        4 -> 1,
-        5 -> 2
+        p = Permutaion(5, 3, 4, 1, 2) 
+        1 -> 5 <=> p(1) = 5,
+        2 -> 3 <=> p(2) = 3,
+        3 -> 4 <=> p(3) = 4,
+        4 -> 1 <=> p(4) = 1,
+        5 -> 2 <=> p(5) = 2
         """
         self.permutation = []
         for m in args:
@@ -25,6 +25,19 @@ class Permutation:
             assert m not in self.permutation, 'Permutation is not bijektiv'
             assert m <= len(args), f'{m} is not a natural Number between 1 and {len(args)}' 
             self.permutation.append(m)
+    
+    def __call__(self, m: int) -> int:
+        """
+        For example:
+        p = Permutation(3, 2, 1)
+        p(1) = 3
+        p(2) = 2
+        p(3) = 1
+        """ 
+
+        assert m > 0, f'{m} is not a natural Number'
+        assert isinstance(m, int), f'{m} is not a natural Number'
+        return self.permutation[m - 1]
     
     def is_abelian(self) -> bool:
         """
