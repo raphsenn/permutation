@@ -1,4 +1,7 @@
 
+checkstyle:
+	flake8 *.py
+
 test:
 	pytest
 
