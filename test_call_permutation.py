@@ -1,5 +1,7 @@
 import pytest
 from permutation import Permutation
+from random_permutation import generate_random_permutation
+
 
 def test_call_permutation_1():
     p = Permutation(1)
