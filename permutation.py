@@ -163,11 +163,11 @@ class Permutation:
         """
         # Shi*ty code, but it works for now
         A = self.permutation
-        group_elements = [[()]]
-        # group_elements = [()] + self.list_to_cycle(copy.deepcopy(A))
         B = [0 for i in range(len(self.permutation))]
+        group_elements = [[()]]
+        
+        # Heap-algorithm from robert sedgewick
         i = 1
-        # Heap-algorithm form robert sedgewick
         while i < len(A):
             if B[i] < i:
                 if i % 2 == 0:
@@ -175,7 +175,6 @@ class Permutation:
                 else:
                     A[B[i]], A[i] = A[i], A[B[i]]
                 group_elements.append(self.list_to_cycle(copy.deepcopy(A)))
-                # group_elements += self.list_to_cycle(copy.deepcopy(A))
                 B[i] += 1
                 i = 1
             else:
@@ -185,9 +184,41 @@ class Permutation:
 
     def group(self, n: int) -> list[list[tuple[int]]]:
         """
-        Returns all Elements from S_n with n Element in netural Numbers.
+        Returns all Elements from S_n as list[list[tuple[int]]]
+        
+        For example:
+        p = Permutation(1)
+        p.group(2) return [[(1, 2)]] 
+ 
+        p.group(3) will return all Elements from S_3
+        p.group(4) will return all Elements from S_4
+        p.group(5) will return all Elements from S_5
+        p.group(6) will return all Elements from S_6
+        ...
+
+        
         """
-        pass
+        # Shi*ty code, but it works for now
+        A = [i for i in range(1, n + 1)]
+        B = [0 for i in range(1, n + 1)]
+        group_elements = [[()]]
+        
+        # Heap-algorithm from robert sedgewick
+        i = 1
+        while i < len(A):
+            if B[i] < i:
+                if i % 2 == 0:
+                    A[0], A[i] = A[i], A[0]
+                else:
+                    A[B[i]], A[i] = A[i], A[B[i]]
+                group_elements.append(self.list_to_cycle(copy.deepcopy(A)))
+                B[i] += 1
+                i = 1
+            else:
+                B[i] = 0
+                i += 1
+        return group_elements
+
 
     def __repr__(self) -> str:
         """
@@ -204,3 +235,4 @@ class Permutation:
                     permutation_to_string += str(n)
             permutation_to_string += ")"
         return permutation_to_string
+
