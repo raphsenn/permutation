@@ -181,19 +181,19 @@ class Permutation:
                 B[i] = 0
                 i += 1
         return group_elements
-
-    def group(self, n: int) -> list[list[tuple[int]]]:
+   
+    @classmethod 
+    def group(cls, n: int) -> list[list[tuple[int]]]:
         """
         Returns all Elements from S_n as list[list[tuple[int]]]
         
         For example:
-        p = Permutation(1)
-        p.group(2) return [[(1, 2)]] 
+        Permutation.group(2) return [[(1, 2)]] 
  
-        p.group(3) will return all Elements from S_3
-        p.group(4) will return all Elements from S_4
-        p.group(5) will return all Elements from S_5
-        p.group(6) will return all Elements from S_6
+        Permutation.group(3) will return all Elements from S_3
+        Permutation.group(4) will return all Elements from S_4
+        Permutatoin.group(5) will return all Elements from S_5
+        Permutation.group(6) will return all Elements from S_6
         ...
 
         
@@ -211,7 +211,7 @@ class Permutation:
                     A[0], A[i] = A[i], A[0]
                 else:
                     A[B[i]], A[i] = A[i], A[B[i]]
-                group_elements.append(self.list_to_cycle(copy.deepcopy(A)))
+                group_elements.append(Permutation().list_to_cycle(copy.deepcopy(A)))
                 B[i] += 1
                 i = 1
             else:

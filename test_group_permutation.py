@@ -3,23 +3,19 @@ from permutation import Permutation
 
 
 def test_group_1():
-    p = Permutation(1)
-    assert p.group(1) == [[()]]
+    assert Permutation.group(1) == [[()]]
 
 
 def test_group_2():
-    p = Permutation(1)
-    assert p.group(2) == [[()], [(1, 2)]]
+    assert Permutation.group(2) == [[()], [(1, 2)]]
 
 
 def test_group_3():
-    p = Permutation(1)
-    assert p.group(3) == [[()], [(1, 2)], [(1, 3, 2)], [(2, 3)], [(1, 2, 3)], [(1, 3)]]
+    assert Permutation.group(3) == [[()], [(1, 2)], [(1, 3, 2)], [(2, 3)], [(1, 2, 3)], [(1, 3)]]
 
 
 def test_group_4():
-    p = Permutation(1)
-    assert p.group(4) == [
+    assert Permutation.group(4) == [
         [()],
         [(1, 2)],
         [(1, 3, 2)],
@@ -48,8 +44,7 @@ def test_group_4():
 
 
 def test_group_5():
-    p = Permutation(1)
-    assert p.group(5) == [
+    assert Permutation.group(5) == [
     [()],
     [(1, 2)],
     [(1, 3, 2)],
@@ -174,5 +169,4 @@ def test_group_5():
 
 
 def test_group_6():
-    p = Permutation(1)
-    assert len(p.group(6)) == 720
+    assert len(Permutation.group(6)) == 720
