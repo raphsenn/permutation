@@ -30,13 +30,15 @@ class Permutation:
         4 -> 1 <=> p(4) = 1,
         5 -> 2 <=> p(5) = 2
         """
-        self.permutation = []
+        self.permutation = dict()
+        i = 1
         for m in args:
             assert m > 0, f'{m} is not a natural Number'
             assert isinstance(m, int), f'{m} is not a natural Number'
-            assert m not in self.permutation, 'Permutation is not bijektiv'
+            assert m not in self.permutation.values(), 'Permutation is not bijektiv'
             assert m <= len(args), f'{m} is not a natural Number between 1 and {len(args)}'
-            self.permutation.append(m)
+            self.permutation[i] = m
+            i += 1
 
     def __call__(self, m: int) -> int:
         """
@@ -49,7 +51,7 @@ class Permutation:
         assert m > 0, f'{m} is not a natural Number'
         assert isinstance(m, int), f'{m} is not a natural Number'
         assert m <= len(self.permutation), f'{m} is not a natural Number between 1 and {len(args)}'
-        return self.permutation[m - 1]
+        return self.permutation[m]
 
     def is_abelian(self) -> bool:
         """
@@ -93,7 +95,7 @@ class Permutation:
             while current not in visited:
                 visited.add(current)
                 cycle = cycle + (current,)
-                current = self.permutation[current - 1]
+                current = self.permutation[current]
             if len(cycle) > 1:
                 cycles.append(cycle)
         return cycles
@@ -162,10 +164,9 @@ class Permutation:
         
         """
         # Shi*ty code, but it works for now
-        A = self.permutation
+        A = list(self.permutation.values())
         B = [0 for i in range(len(self.permutation))]
         group_elements = [[()]]
-        
         # Heap-algorithm from robert sedgewick
         i = 1
         while i < len(A):

@@ -5,22 +5,25 @@ from random_permutation import generate_random_permutation
 
 def test_constructor_1():
     p = Permutation()
-    assert p.permutation == []
+    assert list(p.permutation.values()) == []
 
 
 def test_consructor_2():
     p = Permutation(1)
-    assert p.permutation == [1]
+    assert list(p.permutation.values()) == [1]
+    assert p.permutation == {1 : 1}
 
 
 def test_constructor_3():
     p = Permutation(1, 2, 3, 4, 5)
-    assert p.permutation == [1, 2, 3, 4, 5]
+    assert list(p.permutation.values()) == [1, 2, 3, 4, 5]
+    assert p.permutation == {1 : 1, 2 : 2, 3 : 3, 4 : 4, 5 : 5}
 
 
 def test_constructor_4():
     p = Permutation(5, 1, 3, 2, 4)
-    assert p.permutation == [5, 1, 3, 2, 4]
+    assert list(p.permutation.values()) == [5, 1, 3, 2, 4]
+    assert p.permutation == {1 : 5, 2 : 1, 3 : 3, 4 : 2, 5 : 4}
 
 
 def test_constructor_5():
@@ -58,4 +61,4 @@ def test_constructor_10():
 ])
 def test_constructor_xx(permutation_input):
     p = Permutation(*permutation_input)
-    assert p.permutation == list(permutation_input)
+    assert list(p.permutation.values()) == list(permutation_input)
