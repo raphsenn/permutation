@@ -1,5 +1,5 @@
 import pytest
-from permutation import Permutation
+from permutation.permutation import Permutation
 
 
 def test_order_1():

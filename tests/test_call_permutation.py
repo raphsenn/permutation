@@ -1,6 +1,6 @@
 import pytest
-from permutation import Permutation
-from random_permutation import generate_random_permutation
+from permutation.permutation import Permutation
+from permutation.random_permutation import generate_random_permutation
 
 
 def test_call_permutation_1():
