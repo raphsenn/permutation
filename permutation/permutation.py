@@ -14,22 +14,23 @@ import copy
 class Permutation:
     def __init__(self, *args: int) -> None:
         """
-        *args = (n_1, n_2, n_3, ..., n_x) with n_i Element in {1, 2, ..., max(n_1, ..., n_x)}
-        and i Element in {1, 2, 3, ..., x}
-        1 -> n_1,
-        2 -> n_2,
-        3 -> n_3,
-        ...
-        x -> n_x
+        Initializes a permutation object.
+
+        Args:
+            *args (int): Integers representing the permutation mapping.
+                         Each integer i represents that i is mapped to args[i-1].
+
+        Raises:
+            AssertionError: If the input conditions for a valid permutation are not met.
 
         For example:
-        p = Permutaion(5, 3, 4, 1, 2)
-        1 -> 5 <=> p(1) = 5,
-        2 -> 3 <=> p(2) = 3,
-        3 -> 4 <=> p(3) = 4,
-        4 -> 1 <=> p(4) = 1,
-        5 -> 2 <=> p(5) = 2
-        """
+            p = Permutation(5, 3, 4, 1, 2)
+            - 1 is mapped to 5 (p(1) = 5)
+            - 2 is mapped to 3 (p(2) = 3)
+            - 3 is mapped to 4 (p(3) = 4)
+            - 4 is mapped to 1 (p(4) = 1)
+            - 5 is mapped to 2 (p(5) = 2)
+        """ 
         self.permutation = dict()
         i = 1
         for m in args:
@@ -42,12 +43,23 @@ class Permutation:
 
     def __call__(self, m: int) -> int:
         """
-        For example:
-        p = Permutation(3, 2, 1)
-        p(1) = 3
-        p(2) = 2
-        p(3) = 1
-        """
+        Applies the permutation to the given element.
+
+        Args:
+            m (int): The element to be permuted.
+
+        Returns:
+            int: The result of applying the permutation to the input element.
+
+        Raises:
+            AssertionError: If the input conditions for a valid element are not met.
+
+        Example:
+            p = Permutation(3, 2, 1)
+            - p(1) returns 3
+            - p(2) returns 2
+            - p(3) returns 1
+        """ 
         assert m > 0, f'{m} is not a natural Number'
         assert isinstance(m, int), f'{m} is not a natural Number'
         assert m <= len(self.permutation), f'{m} is not a natural Number between 1 and {len(args)}'
@@ -55,37 +67,39 @@ class Permutation:
 
     def is_abelian(self) -> bool:
         """
-        Return True or False if the Permutation is abelian or not.
+        Checks if the permutation is an abelian permutation.
 
-        For example:
-        p = Permutation(1)
-        p.is_abelian = True
-        because:
-        (p o p)(1) = p(p(1)) = p(1) = 1 = p(1) = p(p(1)) = (p o p)(1)
+        Returns:
+            bool: True if the permutation is abelian, False otherwise.
 
+        Example:
+            p = Permutation(1)
+            - p.is_abelian() returns True
+              because (p o p)(1) = p(p(1)) = p(1) = 1 = p(1) = p(p(1)) = (p o p)(1)
         """
-
         if 0 < len(self.permutation) < 3:
             return True
         return False
 
     def to_cycle(self) -> list[tuple[int]]:
         """
-        Permutations are also often written in cycle notation (cyclic form) so that given the set M = {1, 2, 3, 4},
-        a permutation p of M with p(1) = 2, p(2) = 4, p(4) = 1 and p(3) = 3 <=> p = Permutation(2, 4, 3, 1),
-        will be written as (1, 2, 4)(3), or more commonly, (1, 2, 4) since 3 is left unchanged.
-        This method will return [(1, 2, 4)].
-
         Returns the cycle notation of the Permutation as a list of tuples.
-        
-        For example:
-        p = Permutation(5, 4, 1, 2, 6, 3, 7)
-        p.to_cycle = [(1, 5, 6, 3), (2, 4)]
 
-        p = Permutation(1, 2, 3, 4, 5)
-        p.to_cycle = [()]
+        Permutations are often written in cycle notation (cyclic form), where each cycle
+        represents a set of elements that are permuted among themselves. This method
+        returns the cycle notation of the Permutation.
 
-        """
+        Returns:
+            list[tuple[int]]: A list of tuples representing the cycles of the Permutation.
+
+        Example:
+            p = Permutation(5, 4, 1, 2, 6, 3, 7)
+            p.to_cycle() returns [(1, 5, 6, 3), (2, 4)]
+
+            p = Permutation(1, 2, 3, 4, 5)
+            p.to_cycle() returns [()]
+        """        
+
         cycles = []
         visited = set()
 
@@ -102,7 +116,18 @@ class Permutation:
     
     def list_to_cycle(self, A: list[int]) -> list[tuple[int]]:
         """
-        """
+        Converts a list representation of a permutation to cycle notation.
+
+        Args:
+            A (list[int]): A list representing a permutation.
+
+        Returns:
+            list[tuple[int]]: A list of tuples representing the cycles of the permutation.
+
+        Example:
+            p = Permutation()
+            p.list_to_cycle([2, 4, 3, 1]) returns [(1, 2, 4)]
+        """ 
         cycles = []
         visited = set()
 
@@ -120,24 +145,32 @@ class Permutation:
     def cycle(self, cycle: list) -> None:
         """
         Creates a Permutation from Cycle Notation.
-        
-        For example:
-        """
+
+        Args:
+            cycle (list): A list representing the cycle notation of a permutation.
+
+        Example:
+            p = Permutation()
+            p.cycle([(1, 2, 4)]) creates the permutation corresponding to (1, 2, 4).
+        """ 
         pass
 
     def order(self) -> int:
         """
-        The order (number of elements) of the symmetric group S_n is n!.
+        Returns the order (number of elements) of the symmetric group S_n.
 
-        Runtime: O(len(self.permutation))
+        The order of the symmetric group S_n is n!, where n is the length of the permutation.
 
-        For example:
-        S_1 has order 1 = 1!
-        S_2 has order 2 = 2!
-        S_3 has order 6 = 3!
-        S_4 has order 24 = 4!
-        S_5 has order 120 = 5!
-        S_6 has order 720 = 6!
+        Returns:
+            int: The order of the symmetric group S_n.
+
+        Example:
+            S_1 has order 1 = 1!
+            S_2 has order 2 = 2!
+            S_3 has order 6 = 3!
+            S_4 has order 24 = 4!
+            S_5 has order 120 = 5!
+            S_6 has order 720 = 6!
         """
         n = len(self.permutation)
         if n == 0:
@@ -148,21 +181,22 @@ class Permutation:
 
     def get_group(self) -> list[list[tuple[int]]]:
         """
-        
-        For example: 
-        p = Permutation(1)
-        p.get_group() returns all elements from S_1
+        Generates all elements of the symmetric group S_n in which our permutation is in,  using Heap's algorithm.
 
-        p = Permutation(1, 2)
-        p.get_group() returns all elements from S_2
+        Returns:
+            list[list[tuple[int]]]: A list of lists, where each inner list represents
+                                     the cycle notation of a permutation in S_n.
 
-        p = Permutation(1, 2, 3)
-        p.get_group() returns all elements from S_3
-        ...
+        Examples:
+            p = Permutation(1)
+            p.get_group() returns [[()]]  # All elements from S_1
 
-        We use the Heap-Algorithm.
-        
-        """
+            p = Permutation(1, 2)
+            p.get_group() returns [[()], [(1, 2)]]  # All elements from S_2
+
+            p = Permutation(1, 2, 3)
+            p.get_group() returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)]...]  # All elements from S_3
+        """ 
         # Shi*ty code, but it works for now
         A = list(self.permutation.values())
         B = [0 for i in range(len(self.permutation))]
@@ -186,19 +220,23 @@ class Permutation:
     @classmethod 
     def group(cls, n: int) -> list[list[tuple[int]]]:
         """
-        Returns all Elements from S_n as list[list[tuple[int]]]
-        
-        For example:
-        Permutation.group(2) return [[(1, 2)]] 
- 
-        Permutation.group(3) will return all Elements from S_3
-        Permutation.group(4) will return all Elements from S_4
-        Permutatoin.group(5) will return all Elements from S_5
-        Permutation.group(6) will return all Elements from S_6
-        ...
+        Generates all elements of the symmetric group S_n.
 
-        
-        """
+        Args:
+            n (int): The order of the symmetric group.
+
+        Returns:
+            list[list[tuple[int]]]: A list of lists, where each inner list represents
+                                     the cycle notation of a permutation in S_n.
+
+        Examples:
+            Permutation.group(2) returns [[()], [(1, 2)]]  # All elements from S_2
+
+            Permutation.group(3) returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)]...]  # All elements from S_3
+
+            Permutation.group(4) returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)], ...]  # All elements from S_4
+        """ 
+
         # Shi*ty code, but it works for now
         A = [i for i in range(1, n + 1)]
         B = [0 for i in range(1, n + 1)]
@@ -220,11 +258,17 @@ class Permutation:
                 i += 1
         return group_elements
 
-
     def __repr__(self) -> str:
         """
-        Print method, prints cycle Notation of the Permutation.
-        """
+        Returns a string representation of the permutation in cycle notation.
+
+        Returns:
+            str: A string representing the cycle notation of the permutation.
+
+        Example:
+            p = Permutation(1, 2, 3)
+            repr(p) returns "(1 2 3)"
+        """ 
         permutation_to_string = ""
         cycle_notation = self.to_cycle()
         for cycle in cycle_notation:
@@ -236,4 +280,3 @@ class Permutation:
                     permutation_to_string += str(n)
             permutation_to_string += ")"
         return permutation_to_string
-
