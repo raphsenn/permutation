@@ -153,7 +153,23 @@ class Permutation:
             p = Permutation()
             p.cycle([(1, 2, 4)]) creates the permutation corresponding to (1, 2, 4).
         """ 
-        pass
+        numb_of_elements = 0
+        for cyc in cycle:
+            i = 0 
+            while i < len(cyc):
+                if cyc[i] not in self.permutation:
+                    if i < len(cyc) - 1:
+                        self.permutation[cyc[i]] = cyc[i+1]
+                    else:
+                        self.permutation[cyc[i]] = cyc[0] 
+                i += 1
+            if numb_of_elements < max(cyc):
+                numb_of_elements += max(cyc)
+        if len(self.permutation) < numb_of_elements:
+            for i in range(1, numb_of_elements + 1):
+                if i not in self.permutation:
+                    self.permutation[i] = i
+        self.permutation = dict(sorted(self.permutation.items())) 
 
     def order(self) -> int:
         """
@@ -217,7 +233,7 @@ class Permutation:
                 i += 1
         return group_elements
    
-    @classmethod 
+    @classmethod
     def group(cls, n: int) -> list[list[tuple[int]]]:
         """
         Generates all elements of the symmetric group S_n.
@@ -280,3 +296,6 @@ class Permutation:
                     permutation_to_string += str(n)
             permutation_to_string += ")"
         return permutation_to_string
+# p = Permutation()
+# p.cycle([(7, 6), (5, 4), (3, 2)])
+
