@@ -278,10 +278,10 @@ class Permutation:
         """
         Komposition of two permutations
         """
-        new_permutation2 = ()
+        new_permutation = ()
         for i in other.permutation:
-            new_permutation2 = new_permutation2 + (self.permutation[other.permutation[i]], )
-        return Permutation(*new_permutation2) 
+            new_permutation = new_permutation + (self.permutation[other.permutation[i]], )
+        return Permutation(*new_permutation) 
 
     def __repr__(self) -> str:
         """
