@@ -278,10 +278,8 @@ class Permutation:
         """
         Komposition of two permutations
         """
-        # new_permutation = dict()
         new_permutation2 = ()
         for i in other.permutation:
-            # new_permutation[i] = self.permutation[other.permutation[i]] 
             new_permutation2 = new_permutation2 + (self.permutation[other.permutation[i]], )
         return Permutation(*new_permutation2) 
 
