@@ -274,6 +274,17 @@ class Permutation:
                 i += 1
         return group_elements
 
+    def __mul__(self, other):
+        """
+        Komposition of two permutations
+        """
+        # new_permutation = dict()
+        new_permutation2 = ()
+        for i in other.permutation:
+            # new_permutation[i] = self.permutation[other.permutation[i]] 
+            new_permutation2 = new_permutation2 + (self.permutation[other.permutation[i]], )
+        return Permutation(*new_permutation2) 
+
     def __repr__(self) -> str:
         """
         Returns a string representation of the permutation in cycle notation.
@@ -296,6 +307,3 @@ class Permutation:
                     permutation_to_string += str(n)
             permutation_to_string += ")"
         return permutation_to_string
-# p = Permutation()
-# p.cycle([(7, 6), (5, 4), (3, 2)])
-
