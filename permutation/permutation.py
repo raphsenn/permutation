@@ -5,9 +5,6 @@ The group operation is the composition of functions.
 The elements of the symmetric group on a set X are the permutations of X.
 
 Notation: id = ()
-
-Author: Raphael Senn
-License: MIT License
 """
 import copy
 
@@ -252,7 +249,6 @@ class Permutation:
 
             Permutation.group(4) returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)], ...]  # All elements from S_4
         """ 
-
         # Shi*ty code, but it works for now
         A = [i for i in range(1, n + 1)]
         B = [0 for i in range(1, n + 1)]
@@ -276,8 +272,32 @@ class Permutation:
 
     def __mul__(self, other):
         """
-        Komposition of two permutations
-        """
+        Compose two permutations.
+
+        Args:
+            other (Permutation): Another permutation to compose with.
+
+        Returns:
+            Permutation: A new permutation resulting from the composition of self and other.
+
+        Examples:
+            p1 = Permutation(1, 2, 3)
+            p2 = Permutation(2, 3, 1)
+            result = p1 * p2
+            repr(result) returns "(1 3 2)"
+        
+            q1 = Permutation(2, 3, 1)
+            q2 = Permutation(3, 1, 2)
+            result = q1 * q2
+            repr(result) returns (1 2 3) 
+            
+            result2 = q2 * q1
+            repr(result2) returns (1 3 2)
+
+         Note:
+            The composition of permutations is not commutative. In general, p1 * p2 is not necessarily equal to p2 * p1.
+            However, for permutations in S_n where 1 <= n < 3, it is commutative.
+        """ 
         new_permutation = ()
         for i in other.permutation:
             new_permutation = new_permutation + (self.permutation[other.permutation[i]], )
