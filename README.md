@@ -1,2 +1,5 @@
 # permutation
-Symmetric groups (Sn) of finitely many natural numbers
+
+<p float="left">
+   <img src="./res/Definition.png">
+</p>
