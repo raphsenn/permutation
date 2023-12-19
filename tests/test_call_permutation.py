@@ -36,3 +36,30 @@ def test_call_permutation_4():
     assert p(8) == 8
     assert p(9) == 9
     assert p(10) == 10
+
+
+def test_call_permutation_5():
+    p = Permutation(1, 2, 3, 4, 5, 6, 7, 10, 9, 8)
+    assert p(1) == 1
+    assert p(2) == 2
+    assert p(3) == 3
+    assert p(4) == 4
+    assert p(5) == 5
+    assert p(6) == 6
+    assert p(7) == 7
+    assert p(8) == 10
+    assert p(9) == 9
+    assert p(10) == 8
+
+
+@pytest.mark.parametrize("permutation_input", [
+    generate_random_permutation(100) for _ in range(100)
+])
+def test_call_permutation_50(permutation_input):
+    p = Permutation(*permutation_input)
+    for i in range(1, 101):
+        assert p(i) == permutation_input[i - 1]
+
+
+
+

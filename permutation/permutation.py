@@ -301,7 +301,30 @@ class Permutation:
         new_permutation = ()
         for i in other.permutation:
             new_permutation = new_permutation + (self.permutation[other.permutation[i]], )
-        return Permutation(*new_permutation) 
+        return Permutation(*new_permutation)
+
+    def inverse(self) -> Permutation:
+        """
+        Returns the inverse Element of the current permutation.
+        
+        Returns:
+            Permutation: A new permutation representing the inverse of the current permutation.
+  
+        Examples:
+            p = Permutation(1, 2, 3)
+            p_inverse = p.inverse()
+            such that p * p_inverse = id = p_inverse * p
+ 
+        Note:
+            The inverse permutation undoes the effect of the original permutation.
+            The inverse of the identity permutation is the identity itself. 
+        """
+        new_permutation = dict()
+        for i in range(1, len(self.permutation) + 1):
+            new_permutation[self.permutation[i]] = i
+        new_permutation = dict(sorted(new_permutation.items()))
+        args = tuple(new_permutation.values())
+        return Permutation(*args)
 
     def __repr__(self) -> str:
         """
