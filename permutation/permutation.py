@@ -139,7 +139,7 @@ class Permutation:
                 cycles.append(cycle)
         return cycles
 
-    def cycle(self, cycle: list) -> None:
+    def cycle(self, cycle: list[int]) -> None:
         """
         Creates a Permutation from Cycle Notation.
 
@@ -270,7 +270,7 @@ class Permutation:
                 i += 1
         return group_elements
 
-    def inverse(self):
+    def inverse(self) -> 'Permutation':
         """
         Returns the inverse Element of the current permutation.
         
@@ -293,7 +293,7 @@ class Permutation:
         args = tuple(new_permutation.values())
         return Permutation(*args)
 
-    def __mul__(self, other):
+    def __mul__(self, other: 'Permutation') -> 'Permutation':
         """
         Compose two permutations.
 
@@ -326,7 +326,7 @@ class Permutation:
             new_permutation = new_permutation + (self.permutation[other.permutation[i]], )
         return Permutation(*new_permutation)
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: 'Permutation') -> bool:
         """
 
         """
