@@ -8,6 +8,7 @@ Notation: id = ()
 """
 import copy
 
+
 class Permutation:
     def __init__(self, *args: int) -> None:
         """
@@ -96,7 +97,6 @@ class Permutation:
             p = Permutation(1, 2, 3, 4, 5)
             p.to_cycle() returns [()]
         """        
-
         cycles = []
         visited = set()
 
@@ -270,6 +270,29 @@ class Permutation:
                 i += 1
         return group_elements
 
+    def inverse(self):
+        """
+        Returns the inverse Element of the current permutation.
+        
+        Returns:
+            Permutation: A new permutation representing the inverse of the current permutation.
+  
+        Examples:
+            p = Permutation(1, 2, 3)
+            p_inverse = p.inverse()
+            such that p * p_inverse = id = p_inverse * p
+ 
+        Note:
+            The inverse permutation undoes the effect of the original permutation.
+            The inverse of the identity permutation is the identity itself. 
+        """
+        new_permutation = dict()
+        for i in range(1, len(self.permutation) + 1):
+            new_permutation[self.permutation[i]] = i
+        new_permutation = dict(sorted(new_permutation.items()))
+        args = tuple(new_permutation.values())
+        return Permutation(*args)
+
     def __mul__(self, other):
         """
         Compose two permutations.
@@ -303,28 +326,13 @@ class Permutation:
             new_permutation = new_permutation + (self.permutation[other.permutation[i]], )
         return Permutation(*new_permutation)
 
-    def inverse(self) -> Permutation:
+    def __eq__(self, other) -> bool:
         """
-        Returns the inverse Element of the current permutation.
-        
-        Returns:
-            Permutation: A new permutation representing the inverse of the current permutation.
-  
-        Examples:
-            p = Permutation(1, 2, 3)
-            p_inverse = p.inverse()
-            such that p * p_inverse = id = p_inverse * p
- 
-        Note:
-            The inverse permutation undoes the effect of the original permutation.
-            The inverse of the identity permutation is the identity itself. 
+
         """
-        new_permutation = dict()
-        for i in range(1, len(self.permutation) + 1):
-            new_permutation[self.permutation[i]] = i
-        new_permutation = dict(sorted(new_permutation.items()))
-        args = tuple(new_permutation.values())
-        return Permutation(*args)
+        if self.permutation == other.permutation:
+            return True
+        return False
 
     def __repr__(self) -> str:
         """
