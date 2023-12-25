@@ -39,30 +39,6 @@ class Permutation:
             self.permutation[i] = m
             i += 1
 
-    def __call__(self, m: int) -> int:
-        """
-        Applies the permutation to the given element.
-
-        Args:
-            m (int): The element to be permuted.
-
-        Returns:
-            int: The result of applying the permutation to the input element.
-
-        Raises:
-            AssertionError: If the input conditions for a valid element are not met.
-
-        Example:
-            p = Permutation(3, 2, 1)
-            - p(1) returns 3
-            - p(2) returns 2
-            - p(3) returns 1
-        """ 
-        assert m > 0, f'{m} is not a natural Number'
-        assert isinstance(m, int), f'{m} is not a natural Number'
-        assert m <= len(self.permutation), f'{m} is not a natural Number between 1 and {len(args)}'
-        return self.permutation[m]
-
     def is_abelian(self) -> bool:
         """
         Checks if the permutation is an abelian permutation.
@@ -191,6 +167,19 @@ class Permutation:
         for i in range(n - 1, 1, -1): # from (n - 1) to 1, with 1 step downwards.
             n *= i
         return n
+
+    def degree(self) -> int:
+        """
+        Returns the degree of the permutation in the symmetric group S_n.
+
+        The degree of a permutation in the symmetric group S_n is the smallest
+        positive integer 'd' such that raising the permutation to the power of 'd'
+        results in the identity permutation.
+
+        Returns:
+            int: The degree of the permutation in the symmetric group S_n.
+        """ 
+        pass
 
     def get_group(self) -> list[list[tuple[int]]]:
         """
@@ -333,6 +322,30 @@ class Permutation:
         if self.permutation == other.permutation:
             return True
         return False
+
+    def __call__(self, m: int) -> int:
+        """
+        Applies the permutation to the given element.
+
+        Args:
+            m (int): The element to be permuted.
+
+        Returns:
+            int: The result of applying the permutation to the input element.
+
+        Raises:
+            AssertionError: If the input conditions for a valid element are not met.
+
+        Example:
+            p = Permutation(3, 2, 1)
+            - p(1) returns 3
+            - p(2) returns 2
+            - p(3) returns 1
+        """ 
+        assert m > 0, f'{m} is not a natural Number'
+        assert isinstance(m, int), f'{m} is not a natural Number'
+        assert m <= len(self.permutation), f'{m} is not a natural Number between 1 and {len(args)}'
+        return self.permutation[m]
 
     def __repr__(self) -> str:
         """
