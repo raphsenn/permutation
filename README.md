@@ -6,6 +6,14 @@ This Python library provides a versatile implementation of permutations in the c
    <img src="./res/math1.png">
 </p>
 
+### For example:
+#### If M = {1, 2, 3}, all biijektive Functions (Permutations) from M to itself would be:
+
+```js
+>>> from permutation.permutation import Permutation
+>>> for p in Permutation.group(3):
+...    print(p)
+```
 ### (i) Symmetric Group
 <p float="left">
    <img src="./res/math2.png">
