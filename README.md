@@ -7,12 +7,19 @@ This Python library provides a versatile implementation of permutations in the c
 </p>
 
 ### For example:
-#### If M = {1, 2, 3}, all biijektive Functions (Permutations) from M to itself would be:
+#### If M = {1, 2, 3}, all biijective Functions (Permutations) from M to itself would be (note, the Permutations are in cycle notation, so () != (1 2 3)):
 
 ```js
 >>> from permutation.permutation import Permutation
 >>> for p in Permutation.group(3):
 ...    print(p)
+...
+[()]
+[(1, 2)]
+[(1, 3, 2)]
+[(2, 3)]
+[(1, 2, 3)]
+[(1, 3)]
 ```
 ### (i) Symmetric Group
 <p float="left">
