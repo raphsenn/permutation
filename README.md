@@ -21,6 +21,10 @@ This Python library provides a versatile implementation of permutations in the c
 [(1, 2, 3)]
 [(1, 3)]
 ```
+<p float="left">
+   <img src="./res/math5.png">
+</p>
+
 ### (i) Symmetric Group
 <p float="left">
    <img src="./res/math2.png">
