@@ -144,14 +144,14 @@ class Permutation:
                     self.permutation[i] = i
         self.permutation = dict(sorted(self.permutation.items())) 
 
-    def order(self) -> int:
+    def degree(self) -> int:
         """
-        Returns the order (number of elements) of the symmetric group S_n.
+        Returns the degree (number of elements) of the symmetric group S_n.
 
         The order of the symmetric group S_n is n!, where n is the length of the permutation.
 
         Returns:
-            int: The order of the symmetric group S_n.
+            int: The degree of the symmetric group S_n.
 
         Example:
             S_1 has order 1 = 1!
@@ -168,16 +168,16 @@ class Permutation:
             n *= i
         return n
 
-    def degree(self) -> int:
+    def order(self) -> int:
         """
-        Returns the degree of the permutation in the symmetric group S_n.
+        Returns the order of the permutation in the symmetric group S_n.
 
-        The degree of a permutation in the symmetric group S_n is the smallest
-        positive integer 'd' such that raising the permutation to the power of 'd'
+        The order of a permutation in the symmetric group S_n is the smallest
+        positive integer 'm' such that raising the permutation to the power of 'm'
         results in the identity permutation.
 
         Returns:
-            int: The degree of the permutation in the symmetric group S_n.
+            int: The order of the permutation in the symmetric group S_n.
         """ 
         pass
 
