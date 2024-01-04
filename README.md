@@ -93,10 +93,12 @@ True
 >>> from permutation.permutation import Permutation
 >>> p = Permutation(5, 4, 1, 2, 6, 3, 7)
 >>> p.to_cycle()
-(1 5 6 3)(2 4)
+[(1, 5, 6, 3), (2, 4)]
 >>> id_ = Permutation(1, 2, 3, 4, 5, 6)
 >>> id_.to_cycle()
-()
+[()]
 >>> print(p)
 (1 5 6 3)(2 4)
+>>> print(id_)
+()
 ```
