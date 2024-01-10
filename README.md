@@ -20,7 +20,6 @@ This Python library provides a versatile implementation of permutations in the c
 (2 3)
 (1 2 3)
 (1 3)
-
 >>> for p in Permutation.group(4):
 ...     print(p)
 ...
