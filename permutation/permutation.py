@@ -220,7 +220,7 @@ class Permutation:
         return group_elements
    
     @classmethod
-    def group(cls, n: int) -> list[list[tuple[int]]]:
+    def group(cls, n: int) -> list['Permutation']:
         """
         Generates all elements of the symmetric group S_n.
 
@@ -228,20 +228,15 @@ class Permutation:
             n (int): The order of the symmetric group.
 
         Returns:
-            list[list[tuple[int]]]: A list of lists, where each inner list represents
-                                     the cycle notation of a permutation in S_n.
+            list['Permutation']: A list of Permutations, where each permutation is a element in S_n.
 
         Examples:
-            Permutation.group(2) returns [[()], [(1, 2)]]  # All elements from S_2
-
-            Permutation.group(3) returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)]...]  # All elements from S_3
-
-            Permutation.group(4) returns [[()], [(1, 2)], [(1, 2, 3)], [(1, 3, 2)], [(2, 1)], ...]  # All elements from S_4
+            Permutation.group(2) returns [Permutation(1, 2), Permutation(2, 1)]  # All elements from S_2
         """ 
         # Shi*ty code, but it works for now
         A = [i for i in range(1, n + 1)]
         B = [0 for i in range(1, n + 1)]
-        group_elements = [[()]]
+        group_elements = [Permutation(*tuple([i + 1 for i in range(n)]))]
         
         # Heap-algorithm from robert sedgewick
         i = 1
@@ -251,7 +246,8 @@ class Permutation:
                     A[0], A[i] = A[i], A[0]
                 else:
                     A[B[i]], A[i] = A[i], A[B[i]]
-                group_elements.append(Permutation().list_to_cycle(copy.deepcopy(A)))
+                args = tuple(A) 
+                group_elements.append(Permutation(*args))
                 B[i] += 1
                 i = 1
             else:
@@ -368,4 +364,6 @@ class Permutation:
                 else: 
                     permutation_to_string += str(n)
             permutation_to_string += ")"
+        if permutation_to_string == "":
+            return "()"
         return permutation_to_string
