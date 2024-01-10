@@ -14,12 +14,12 @@ This Python library provides a versatile implementation of permutations in the c
 >>> for p in Permutation.group(3):
 ...    print(p)
 ...
-[()]
-[(1, 2)]
-[(1, 3, 2)]
-[(2, 3)]
-[(1, 2, 3)]
-[(1, 3)]
+()
+(1 2)
+(1 3 2)
+(2 3)
+(1 2 3)
+(1 3)
 ```
 <p float="left">
    <img src="./res/math5.png">
