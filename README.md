@@ -20,6 +20,34 @@ This Python library provides a versatile implementation of permutations in the c
 (2 3)
 (1 2 3)
 (1 3)
+
+>>> for p in Permutation.group(4):
+...     print(p)
+...
+()
+(1 2)
+(1 3 2)
+(2 3)
+(1 2 3)
+(1 3)
+(1 4 3)
+(1 2 4 3)
+(2 4 3)
+(1 4 3 2)
+(1 2)(3 4)
+(3 4)
+(2 3 4)
+(1 3 4 2)
+(1 4 2)
+(2 4)
+(1 3)(2 4)
+(1 4 2 3)
+(1 4)(2 3)
+(1 3 2 4)
+(1 2 4)
+(1 4)
+(1 3 4)
+(1 2 3 4)
 ```
 <p float="left">
    <img src="./res/math5.png">
