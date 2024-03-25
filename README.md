@@ -41,18 +41,18 @@ False
 >>> p_inverse = Permutation(3, 5, 1, 2, 4)
 >>> p * p_inverse == p_inverse * p
 True
->>> id_ = Permutation(1, 2, 3, 4, 5)
->>> p * p_inverse == id_
+>>> id = Permutation(1, 2, 3, 4, 5)
+>>> p * p_inverse == id
 True
->>> p * id_ == p
+>>> p * id == p
 True
->>> id_ * p == p
+>>> id * p == p
 True
->>> q * id_ == q
+>>> q * id == q
 >>> True
->>> id_ * q == q
+>>> id * q == q
 True
->>> id_ * id_ == id_
+>>> id * id == id
 True
 ```
 
