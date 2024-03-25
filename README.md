@@ -9,7 +9,7 @@ This Python library provides a versatile implementation of permutations in the c
 ### For example:
 #### If M = {1, 2, 3}, all biijective Functions (Permutations) from M to itself would be (note, the Permutations are in cycle notation, so () != (1 2 3)):
 
-```js
+```python
 >>> from permutation.permutation import Permutation
 >>> for p in Permutation.group(3):
 ...    print(p)
@@ -29,7 +29,7 @@ This Python library provides a versatile implementation of permutations in the c
 
 ### For example:
 #### Note: Permutations for n > 2 are not commutative!
-```js
+```python
 >>> from permutation.permutation import Permutation
 >>> p = Permutation(3, 4, 1, 4, 2)
 >>> q = Permutation(5, 3, 2, 1, 4)
@@ -63,7 +63,7 @@ True
 
 #### For example:
 
-```js
+```python
 >>> from permutation.permutation import Permutation
 >>> p = Permutation(2, 1, 3)
 >>> p(1) 
@@ -86,7 +86,7 @@ True
 
 #### For example:
 
-```js
+```python
 >>> from permutation.permutation import Permutation
 >>> p = Permutation(5, 4, 1, 2, 6, 3, 7)
 >>> p.to_cycle()
